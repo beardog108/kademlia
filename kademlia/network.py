@@ -2,7 +2,7 @@
 Package for interacting on the network at a high level.
 """
 import random
-import pickle
+import umsgpack
 import asyncio
 import logging
 
@@ -168,7 +168,7 @@ class Server:
 
     async def set_digest(self, dkey, value):
         """
-        Set the given SHA1 digest key (bytes) to the given value in the
+        Set the given shake_128 digest key (bytes) to the given value in the
         network.
         """
         node = Node(dkey)
@@ -208,7 +208,7 @@ class Server:
             log.warning("No known neighbors, so not writing to cache.")
             return
         with open(fname, 'wb') as file:
-            pickle.dump(data, file)
+            umsgpack.dump(data, file)
 
     @classmethod
     async def load_state(cls, fname, port, interface='0.0.0.0'):
@@ -219,7 +219,7 @@ class Server:
         """
         log.info("Loading state from %s", fname)
         with open(fname, 'rb') as file:
-            data = pickle.load(file)
+            data = umsgpack.load(file)
         svr = Server(data['ksize'], data['alpha'], data['id'])
         await svr.listen(port, interface)
         if data['neighbors']:

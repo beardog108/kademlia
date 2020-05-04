@@ -1,7 +1,7 @@
 """
 General catchall for functions that don't make sense as methods.
 """
-import hashlib
+from hashlib import shake_128
 import operator
 import asyncio
 
@@ -15,7 +15,7 @@ async def gather_dict(dic):
 def digest(string):
     if not isinstance(string, bytes):
         string = str(string).encode('utf8')
-    return hashlib.sha1(string).digest()
+    return shake_128(string).digest(20)  # pylint: disable=E1121
 
 
 def shared_prefix(args):

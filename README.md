@@ -7,12 +7,14 @@
 
 This library is an asynchronous Python implementation of the [Kademlia distributed hash table](http://en.wikipedia.org/wiki/Kademlia).  It uses the [asyncio library](https://docs.python.org/3/library/asyncio.html) in Python 3 to provide asynchronous communication.  The nodes communicate using [RPC over UDP](https://github.com/bmuller/rpcudp) to communiate, meaning that it is capable of working behind a [NAT](http://en.wikipedia.org/wiki/Network_address_translation).
 
-This library aims to be as close to a reference implementation of the [Kademlia paper](http://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf) as possible.
+
+**This library is a fork of the kademlia Python library. It is intended to be roughly equivalent, but due to this library having security fixes, it is not compatible with the original nor other reference kademlia implementations. Specifically the use of sha1 and pickle have been replaced by better choices**
+
 
 ## Installation
 
 ```
-pip install kademlia
+pip install secure-kademlia
 ```
 
 ## Usage

@@ -6,5 +6,6 @@ apidoc
 build
 dist
 kademlia.egg-info
+secure_kademlia.egg-info/*
 docs/_build
 .coverage
